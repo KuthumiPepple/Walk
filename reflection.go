@@ -2,11 +2,11 @@ package main
 
 import "reflect"
 
-func walk(x interface{}, fn func(input string)) {
+func Walk(x interface{}, fn func(input string)) {
 	val := getValue(x)
 
 	walkValue := func(value reflect.Value) {
-		walk(value.Interface(), fn)
+		Walk(value.Interface(), fn)
 	}
 
 	switch val.Kind() {
@@ -26,12 +26,12 @@ func walk(x interface{}, fn func(input string)) {
 		}
 	case reflect.Chan:
 		for v, ok := val.Recv(); ok; v, ok = val.Recv() {
-			walk(v.Interface(), fn)
+			Walk(v.Interface(), fn)
 		}
 	case reflect.Func:
 		valFnResult := val.Call(nil)
 		for _, res := range valFnResult {
-			walk(res.Interface(), fn)
+			Walk(res.Interface(), fn)
 		}
 	}
 

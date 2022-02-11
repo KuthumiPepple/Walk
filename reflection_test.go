@@ -71,7 +71,7 @@ func TestWalk(t *testing.T) {
 	for _, test := range cases {
 		t.Run(test.Name, func(t *testing.T) {
 			var got []string
-			walk(test.Input, func(input string) {
+			Walk(test.Input, func(input string) {
 				got = append(got, input)
 			})
 
@@ -88,7 +88,7 @@ func TestWalk(t *testing.T) {
 		}
 
 		var got []string
-		walk(aMap, func(input string) {
+		Walk(aMap, func(input string) {
 			got = append(got, input)
 		})
 
@@ -108,7 +108,7 @@ func TestWalk(t *testing.T) {
 		var got []string
 		want := []string{"Berlin", "Katowice"}
 
-		walk(aChannel, func(input string) {
+		Walk(aChannel, func(input string) {
 			got = append(got, input)
 		})
 
@@ -125,7 +125,7 @@ func TestWalk(t *testing.T) {
 		var got []string
 		want := []string{"Berlin", "Katowice"}
 
-		walk(aFunction, func(input string) {
+		Walk(aFunction, func(input string) {
 			got = append(got, input)
 		})
 
